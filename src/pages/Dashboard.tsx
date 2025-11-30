@@ -139,6 +139,7 @@ export default function Dashboard() {
                 sublabel={`${stats.active} com alta prioridade`}
                 iconColor="text-blue-600"
                 iconBg="bg-blue-100"
+                valueColor="text-blue-600"
               />
               <StatsCard
                 icon={CheckCircle}
@@ -148,14 +149,16 @@ export default function Dashboard() {
                 trend="+25%"
                 iconColor="text-green-600"
                 iconBg="bg-green-100"
+                valueColor="text-green-600"
               />
               <StatsCard
                 icon={Clock}
                 value={stats.pending}
                 label="Pendências"
                 sublabel="Requerem atenção"
-                iconColor="text-orange-600"
-                iconBg="bg-orange-100"
+                iconColor="text-purple-600"
+                iconBg="bg-purple-100"
+                valueColor="text-purple-600"
               />
             </div>
 

@@ -1,4 +1,4 @@
-import { LucideIcon } from 'lucide-react';
+import { LucideIcon } from "lucide-react";
 
 interface StatsCardProps {
   icon: LucideIcon;
@@ -6,8 +6,9 @@ interface StatsCardProps {
   label: string;
   sublabel?: string;
   trend?: string;
-  iconColor: string;
-  iconBg: string;
+  iconColor?: string;
+  iconBg?: string;
+  valueColor?: string; // NOVO
 }
 
 export default function StatsCard({
@@ -16,24 +17,33 @@ export default function StatsCard({
   label,
   sublabel,
   trend,
-  iconColor,
-  iconBg
+  iconColor = "text-blue-600",
+  iconBg = "bg-blue-100",
+  valueColor = "text-blue-600", // NOVO
 }: StatsCardProps) {
   return (
-    <div className="bg-white rounded-xl p-6 border border-gray-100 hover:shadow-lg transition">
-      <div className="flex items-start justify-between mb-4">
-        <div className={`${iconBg} p-3 rounded-lg`}>
-          <Icon size={24} className={iconColor} />
-        </div>
-        {trend && (
-          <span className="text-green-600 text-sm font-semibold bg-green-50 px-2 py-1 rounded">
-            {trend}
-          </span>
-        )}
+    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
+      
+      {/* Ícone */}
+      <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${iconBg}`}>
+        <Icon className={iconColor} size={26} />
       </div>
-      <div className="text-3xl font-bold text-gray-900 mb-1">{value}</div>
-      <div className="text-sm font-medium text-gray-700">{label}</div>
-      {sublabel && <div className="text-xs text-gray-500 mt-1">{sublabel}</div>}
+
+      {/* Número (AGORA COM COR DO ÍCONE) */}
+      <p className={`text-4xl font-bold mt-4 ${valueColor}`}>
+        {value}
+      </p>
+
+      {/* Texto */}
+      <p className="text-gray-600 text-sm mt-1">{label}</p>
+      {sublabel && <p className="text-gray-400 text-xs">{sublabel}</p>}
+
+      {/* Tendência */}
+      {trend && (
+        <p className="absolute top-4 right-4 text-green-600 text-sm font-medium">
+          {trend}
+        </p>
+      )}
     </div>
   );
 }
