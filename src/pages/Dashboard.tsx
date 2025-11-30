@@ -159,7 +159,7 @@ export default function Dashboard() {
             </div>
 
             <div className="mb-8">
-              <ConformityScore score={conformityScore} />
+              <QuickActions />
             </div>
 
             <div className="grid grid-cols-3 gap-8 mb-8">
@@ -192,7 +192,9 @@ export default function Dashboard() {
               </div>
             </div>
 
-            <QuickActions />
+            <div className="mb-8">
+              <ConformityScore score={conformityScore} />
+            </div>
           </div>
         </main>
       </div>
