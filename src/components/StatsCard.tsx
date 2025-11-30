@@ -8,7 +8,7 @@ interface StatsCardProps {
   trend?: string;
   iconColor?: string;
   iconBg?: string;
-  valueColor?: string; // NOVO
+  valueColor?: string; 
 }
 
 export default function StatsCard({
