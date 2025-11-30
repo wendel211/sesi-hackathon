@@ -503,25 +503,6 @@ sesi-onboarding/
 
 ---
 
-## Contribuindo
-
-Contribuições são bem-vindas. Para contribuir:
-
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/NovaFuncionalidade`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
-4. Push para a branch (`git push origin feature/NovaFuncionalidade`)
-5. Abra um Pull Request
-
-### Diretrizes
-
-- Siga as convenções de código estabelecidas
-- Adicione testes para novas funcionalidades
-- Atualize a documentação quando necessário
-- Mantenha commits descritivos e atômicos
-
----
-
 ## Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para detalhes.
