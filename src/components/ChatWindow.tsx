@@ -48,8 +48,8 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
       {/* HEADER */}
       <div className="bg-blue-600 text-white px-4 py-4 flex items-center justify-between border-b border-blue-700/30">
         <div>
-          <p className="font-semibold text-sm">Assistente Virtual</p>
-          <p className="text-xs opacity-80 mt-0.5">Sempre disponível</p>
+          <p className="font-semibold text-sm">SESI Assistente</p>
+          <p className="text-xs opacity-80 mt-0.5">Como podemos ajudar?</p>
         </div>
 
         <button
