@@ -445,6 +445,7 @@ VITE_SUPABASE_ANON_KEY=sua-chave-anon-key
 2. Crie um novo projeto
 3. Vá em `Settings` > `API`
 4. Copie `URL` e `anon/public key`
+5. Caso não queira criar, foi subido um .env para facilitar a avaliação e teste por parte da banca técnica
 
 #### 4. Configure o banco de dados
 
