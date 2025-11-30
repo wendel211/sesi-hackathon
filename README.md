@@ -183,6 +183,32 @@ interface EducationalContent {
 - Comparação side-by-side de versões
 - Export em formato SESI-compliant
 
+#### 6. Assistente Virtual Inteligente
+
+**Interface de Chat Flutuante**:
+- Widget fixo no canto inferior direito
+- Janela expansível com design responsivo
+- Interface limpa e moderna com scroll automático
+
+**Quick Actions Contextuais**:
+- Acompanhar status do contrato
+- Corrigir formulário M1
+- Visualizar agenda de atividades
+- Ações personalizadas baseadas no contexto do usuário
+
+**Características (MVP)**:
+- Sistema de mensagens bidirecional
+- Respostas automáticas contextuais
+- Histórico de conversação persistente
+- Interface otimizada para mobile e desktop
+
+**Roadmap do Assistente**:
+- Integração com IA generativa (Claude/GPT)
+- Acesso a dados reais do usuário via API
+- Notificações proativas baseadas em eventos
+- Suporte multicanal (email, SMS, WhatsApp)
+- Analytics de conversação e satisfação
+
 ---
 
 ## Arquitetura
@@ -194,26 +220,29 @@ graph TB
         A[React 19 + TypeScript]
         B[Tailwind CSS]
         C[Context API]
+        D[Assistente Virtual]
     end
     
     subgraph Backend
-        D[Supabase Auth]
-        E[PostgreSQL + RLS]
-        F[Supabase Storage]
+        E[Supabase Auth]
+        F[PostgreSQL + RLS]
+        G[Supabase Storage]
     end
     
     subgraph Future
-        G[IA Validation Service]
-        H[WebSocket Server]
-        I[Email Service]
+        H[IA Validation Service]
+        I[WebSocket Server]
+        J[Email Service]
+        K[AI Chat Service]
     end
     
     A --> C
-    C --> D
     C --> E
-    E --> G
-    E --> H
-    D --> I
+    C --> F
+    D --> K
+    F --> H
+    F --> I
+    E --> J
 ```
 
 ### Schema de Banco de Dados
@@ -293,6 +322,17 @@ CREATE TABLE journey_steps (
 - Datas estimadas e realizadas
 - Atualização de status em tempo real
 
+#### Assistente Virtual (MVP)
+- **Widget Flutuante**: Botão de chat fixo com indicador visual
+- **Interface de Chat**: Janela expansível com design responsivo (380x550px)
+- **Quick Actions**: Botões de ação rápida para tarefas comuns
+  - Acompanhar contrato
+  - Corrigir formulário M1
+  - Visualizar agenda
+- **Sistema de Mensagens**: Histórico de conversação com scroll automático
+- **Respostas Automáticas**: Feedback contextual simulado
+- **Design Responsivo**: Otimizado para desktop e mobile
+
 ### Planejadas (Roadmap)
 
 #### Q1 2025 - Automação de Dados
@@ -302,17 +342,26 @@ CREATE TABLE journey_steps (
 - Editor inline com validação real-time
 - Export para formato SESI
 
-#### Q2 2025 - Conteúdo Educativo
+#### Q2 2025 - Conteúdo Educativo & IA
 - Knowledge base integrada
 - Tutoriais interativos
 - Biblioteca de vídeos
-- Chatbot com IA
+- **Assistente Virtual com IA**:
+  - Integração com Claude/GPT-4
+  - Acesso a dados do dashboard em tempo real
+  - Processamento de linguagem natural
+  - Respostas personalizadas por contexto
+  - Histórico de conversação persistente
 - Glossário SST
 
 #### Q2 2025 - Notificações & Integrações
 - WebSocket para updates real-time
 - Sistema de notificações push
 - Email transacional
+- **Chat Multicanal**:
+  - WhatsApp Business API
+  - SMS notifications
+  - Email threading
 - API REST pública
 - Webhooks para eventos
 
@@ -320,6 +369,11 @@ CREATE TABLE journey_steps (
 - Dashboard para SESI (visão consolidada)
 - Sistema de badges
 - Leaderboard de conformidade (opt-in)
+- **Analytics do Assistente**:
+  - Métricas de satisfação (CSAT/NPS)
+  - Tempo médio de resposta
+  - Taxa de resolução
+  - Análise de sentimento
 - Recomendações personalizadas com IA
 - Relatórios exportáveis (PDF, XLSX)
 
@@ -391,6 +445,7 @@ VITE_SUPABASE_ANON_KEY=sua-chave-anon-key
 2. Crie um novo projeto
 3. Vá em `Settings` > `API`
 4. Copie `URL` e `anon/public key`
+5. Caso não queira criar, foi subido um .env para facilitar a avaliação e teste por parte da banca técnica
 
 #### 4. Configure o banco de dados
 
@@ -437,6 +492,8 @@ Senha: demo123456
 sesi-onboarding/
 ├── src/
 │   ├── components/          # Componentes React reutilizáveis
+│   │   ├── AssistantChat.tsx      # Widget do assistente virtual
+│   │   ├── ChatWindow.tsx         # Interface de chat expansível
 │   │   ├── ConformityScore.tsx
 │   │   ├── Header.tsx
 │   │   ├── JourneyTimeline.tsx
@@ -483,9 +540,10 @@ sesi-onboarding/
 ### Q2 2025 - Experiência do Usuário
 - [ ] Knowledge base
 - [ ] Tutoriais interativos
-- [ ] Chatbot de suporte
+- [ ] Chatbot de suporte com IA (Claude/GPT)
 - [ ] Biblioteca de vídeos
 - [ ] Sistema de notificações
+- [ ] Assistente virtual com processamento de linguagem natural
 
 ### Q3 2025 - Analytics e Gamificação
 - [ ] Dashboard analytics SESI
@@ -493,6 +551,7 @@ sesi-onboarding/
 - [ ] Leaderboard
 - [ ] Recomendações com IA
 - [ ] Relatórios exportáveis
+- [ ] Analytics de conversação do assistente
 
 ### Q4 2025 - Integrações
 - [ ] API REST pública
@@ -500,6 +559,8 @@ sesi-onboarding/
 - [ ] Integração ERP
 - [ ] App móvel (React Native)
 - [ ] Modo offline
+- [ ] WhatsApp Business API
+- [ ] SMS notifications
 
 ---
 
