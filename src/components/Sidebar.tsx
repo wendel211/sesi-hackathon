@@ -22,90 +22,91 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="w-60 h-screen bg-white border-r border-gray-200 flex flex-col px-5 py-6">
-
-      {/* HEADER COMPACTO */}
-      <div className="mb-6">
-        <div className="w-8 h-8 bg-blue-500 rounded-md text-white flex items-center justify-center text-sm font-semibold">
+    <aside className="w-44 h-screen bg-white border-r border-gray-200 flex flex-col px-4 py-5">
+      {/* Header */}
+      <div className="mb-4">
+        <div className="w-7 h-7 bg-blue-500 rounded-md text-white flex items-center justify-center text-xs font-semibold">
           S
         </div>
-        <h2 className="text-sm font-semibold mt-2 leading-none">EMPRESA CLIENTE</h2>
-        <p className="text-xs text-gray-400 mt-0.5">Onboarding</p>
+
+        <h2 className="text-[13px] font-semibold mt-2 leading-tight">
+          EMPRESA CLIENTE
+        </h2>
+
+        <p className="text-[11px] text-gray-400 mt-0.5">Onboarding</p>
       </div>
 
-      <nav className="flex-1 flex flex-col justify-between py-1">
-
-        {/* BLOCOS COMPACTADOS */}
+      <nav className="flex-1 flex flex-col justify-between">
         <div className="flex flex-col gap-4">
 
-          {/* PRINCIPAL */}
+          {/* Principal */}
           <div>
-            <p className="text-xs font-semibold text-gray-400 mb-1">Principal</p>
+            <p className="text-[11px] font-semibold text-gray-400 mb-1">Principal</p>
 
             <div className="flex flex-col gap-0.5">
               <button className="sidebar-item-active">
-                <LayoutDashboard size={16} />
+                <LayoutDashboard size={15} />
                 <span>Dashboard</span>
               </button>
 
               <button className="sidebar-item">
-                <CheckCircle size={16} />
+                <CheckCircle size={15} />
                 <span>Missões</span>
               </button>
 
               <button className="sidebar-item">
-                <FileText size={16} />
+                <FileText size={15} />
                 <span>Conformidade</span>
               </button>
 
               <button className="sidebar-item">
-                <Calendar size={16} />
+                <Calendar size={15} />
                 <span>Calendário</span>
               </button>
             </div>
           </div>
 
-          {/* RECURSOS */}
+          {/* Recursos */}
           <div>
-            <p className="text-xs font-semibold text-gray-400 mb-1">Recursos</p>
+            <p className="text-[11px] font-semibold text-gray-400 mb-1">Recursos</p>
 
             <div className="flex flex-col gap-0.5">
               <button className="sidebar-item">
-                <FileText size={16} />
+                <FileText size={15} />
                 <span>Documentos</span>
               </button>
 
               <button className="sidebar-item">
-                <Users size={16} />
+                <Users size={15} />
                 <span>Colaboradores</span>
               </button>
             </div>
           </div>
 
-          {/* CONTROLE */}
+          {/* Controle */}
           <div>
-            <p className="text-xs font-semibold text-gray-400 mb-1">Controle</p>
+            <p className="text-[11px] font-semibold text-gray-400 mb-1">Controle</p>
 
             <div className="flex flex-col gap-0.5">
               <button className="sidebar-item">
-                <Trophy size={16} />
+                <Trophy size={15} />
                 <span>Conquistas</span>
               </button>
 
               <button className="sidebar-item">
-                <Settings size={16} />
+                <Settings size={15} />
                 <span>Configurações</span>
               </button>
             </div>
           </div>
         </div>
 
-        {/* LOGOUT COMPACTO */}
+        {/* Logout */}
         <button
           onClick={handleSignOut}
-          className="flex items-center gap-2 text-gray-400 hover:text-red-600 transition mt-2 text-sm"
+          className="flex items-center gap-1.5 text-gray-400 hover:text-red-600 transition text-xs"
         >
-          <LogOut size={16} />
+          <LogOut size={15} />
           <span>Sair</span>
         </button>
       </nav>

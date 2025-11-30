@@ -11,3 +11,12 @@
     @apply flex items-center gap-3 px-3 py-2 bg-gray-100 text-gray-900 rounded-lg font-semibold;
   }
 }
+@layer components {
+  .sidebar-item {
+    @apply flex items-center gap-2 px-2 py-1.5 rounded-md text-gray-700 hover:bg-gray-100 text-[13px] transition;
+  }
+
+  .sidebar-item-active {
+    @apply flex items-center gap-2 px-2 py-1.5 rounded-md bg-gray-100 text-gray-900 text-[13px] font-medium;
+  }
+}
