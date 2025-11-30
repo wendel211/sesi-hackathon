@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Target, CheckCircle, Clock } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
+
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import StatsCard from '../components/StatsCard';
@@ -9,6 +10,7 @@ import MissionCard from '../components/MissionCard';
 import JourneyTimeline from '../components/JourneyTimeline';
 import ConformityScore from '../components/ConformityScore';
 import QuickActions from '../components/QuickActions';
+import AssistantChat from '../components/AssistantChat';
 
 interface Mission {
   id: string;
@@ -43,9 +45,7 @@ export default function Dashboard() {
   const [conformityScore, setConformityScore] = useState(85);
 
   useEffect(() => {
-    if (user) {
-      loadDashboardData();
-    }
+    if (user) loadDashboardData();
   }, [user]);
 
   const loadDashboardData = async () => {
@@ -76,16 +76,16 @@ export default function Dashboard() {
         points: um.missions.points,
         deadline_days: um.missions.deadline_days,
         status: um.status,
-        progress: um.progress
+        progress: um.progress,
       }));
 
       setMissions(formattedMissions);
 
-      const active = formattedMissions.filter((m: Mission) => m.status === 'in_progress').length;
-      const completed = formattedMissions.filter((m: Mission) => m.status === 'completed').length;
-      const pending = formattedMissions.filter((m: Mission) => m.status === 'pending').length;
-
-      setStats({ active, completed, pending });
+      setStats({
+        active: formattedMissions.filter((m) => m.status === 'in_progress').length,
+        completed: formattedMissions.filter((m) => m.status === 'completed').length,
+        pending: formattedMissions.filter((m) => m.status === 'pending').length,
+      });
     }
 
     const { data: journeyData } = await supabase
@@ -95,14 +95,15 @@ export default function Dashboard() {
       .order('order', { ascending: true });
 
     if (journeyData) {
-      const formattedJourney = journeyData.map((step: any) => ({
-        title: step.title,
-        description: step.description,
-        status: step.status,
-        date: step.date,
-        linkText: step.link_text
-      }));
-      setJourneySteps(formattedJourney);
+      setJourneySteps(
+        journeyData.map((step: any) => ({
+          title: step.title,
+          description: step.description,
+          status: step.status,
+          date: step.date,
+          linkText: step.link_text,
+        }))
+      );
     }
 
     const { data: profileData } = await supabase
@@ -111,9 +112,7 @@ export default function Dashboard() {
       .eq('id', user!.id)
       .maybeSingle();
 
-    if (profileData) {
-      setConformityScore(profileData.conformity_score);
-    }
+    if (profileData) setConformityScore(profileData.conformity_score);
   };
 
   return (
@@ -125,11 +124,13 @@ export default function Dashboard() {
 
         <main className="flex-1 overflow-y-auto">
           <div className="max-w-7xl mx-auto p-8">
+            {/* Título */}
             <div className="mb-8">
               <h1 className="text-3xl font-bold text-gray-900 mb-2">Bem-vindo ao seu painel!</h1>
               <p className="text-gray-600">Acompanhe suas missões e melhore sua conformidade em SST</p>
             </div>
 
+            {/* Cards */}
             <div className="grid grid-cols-3 gap-6 mb-8">
               <StatsCard
                 icon={Target}
@@ -158,10 +159,12 @@ export default function Dashboard() {
               />
             </div>
 
+            {/* Ações rápidas */}
             <div className="mb-8">
               <QuickActions />
             </div>
 
+            {/* Missões + Jornada */}
             <div className="grid grid-cols-3 gap-8 mb-8">
               <div className="col-span-2">
                 <div className="flex items-center justify-between mb-6">
@@ -192,12 +195,16 @@ export default function Dashboard() {
               </div>
             </div>
 
-            <div className="mb-8">
+            {/* Conformidade */}
+            <div className="mb-12">
               <ConformityScore score={conformityScore} />
             </div>
           </div>
         </main>
       </div>
+
+      {/* 🔵 Novo: Chat Assistente */}
+      <AssistantChat />
     </div>
   );
 }
